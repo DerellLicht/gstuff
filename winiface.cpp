@@ -21,7 +21,6 @@ HINSTANCE g_hinst = 0;
 
 //lint -esym(759, get_clocks_per_second)
 //lint -esym(765, get_clocks_per_second)
-static LRESULT CALLBACK WndProc (HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam);
 
 //  demo.cpp, rainbow.cpp
 extern rainbow rainbow0 ;
@@ -65,72 +64,6 @@ u64 proc_time(void)
    QueryPerformanceCounter(&ti) ;
    return (u64) ti.QuadPart ;
 }
-
-//***********************************************************************
-int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
-                  PSTR szCmdLine, int iCmdShow)
-   {
-   static char const szAppName[] = "gstuff" ;
-   HWND        hwnd ;
-   MSG         msg ;
-   WNDCLASSEX  wndclass ;
-   g_hinst = hInstance;
-
-   /* Seed the random-number generator with current time so that
-    * the numbers will be different every time we run.
-    */
-#ifndef _lint
-   srand( (unsigned)time( NULL ) );
-#endif
-
-   wndclass.cbSize        = sizeof (wndclass) ;
-   wndclass.style         = CS_HREDRAW | CS_VREDRAW ;
-   wndclass.lpfnWndProc   = WndProc ;
-   wndclass.cbClsExtra    = 0 ;
-   wndclass.cbWndExtra    = 0 ;
-   wndclass.hInstance     = hInstance ;
-   // wndclass.hIcon         = LoadIcon (NULL, IDI_APPLICATION) ;
-   // wndclass.hIconSm       = LoadIcon (NULL, IDI_APPLICATION) ;
-   wndclass.hIcon         = LoadIcon (hInstance, MAKEINTRESOURCE(GSTUFF));
-   wndclass.hIconSm       = LoadIcon (hInstance, MAKEINTRESOURCE(GSTUFF));
-   wndclass.hCursor       = LoadCursor (NULL, IDC_ARROW) ;
-   // wndclass.hbrBackground = (HBRUSH) GetStockObject (BLACK_BRUSH) ;
-   wndclass.hbrBackground = (HBRUSH) (COLOR_WINDOW + 1) ;
-   wndclass.lpszMenuName  = NULL ;
-   wndclass.lpszClassName = szAppName ;
-
-   RegisterClassEx (&wndclass) ;
-
-   hwnd = CreateWindow (szAppName, "Draw practice graphics",
-                        WS_OVERLAPPEDWINDOW,
-                        // CW_USEDEFAULT, CW_USEDEFAULT,
-                        // CW_USEDEFAULT, CW_USEDEFAULT,
-                        200, 100,
-                        1024, 768,
-                        NULL, NULL, hInstance, NULL) ;
-
-   ShowWindow (hwnd, iCmdShow) ;
-   UpdateWindow (hwnd) ;
-
-   while (TRUE) {
-      if (PeekMessage (&msg, NULL, 0, 0, PM_REMOVE)) {
-         if (msg.message == WM_QUIT)
-              break ;
-   
-         TranslateMessage (&msg) ;
-         DispatchMessage (&msg) ;
-      }
-      else {
-         display_current_operation(hwnd) ;
-      }
-   }
-
-   // while (GetMessage (&msg, NULL, 0, 0)) {
-   //    TranslateMessage (&msg) ;
-   //    DispatchMessage (&msg) ;
-   // }
-   return msg.wParam ;
-}  //lint !e715
 
 //***********************************************************************
 static void show_vital_data(HWND hwnd)
@@ -338,4 +271,70 @@ static LRESULT CALLBACK WndProc (HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lPa
 
    return DefWindowProc (hwnd, iMsg, wParam, lParam) ;
 }
+
+//***********************************************************************
+int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
+                  PSTR szCmdLine, int iCmdShow)
+   {
+   static char const szAppName[] = "gstuff" ;
+   HWND        hwnd ;
+   MSG         msg ;
+   WNDCLASSEX  wndclass ;
+   g_hinst = hInstance;
+
+   /* Seed the random-number generator with current time so that
+    * the numbers will be different every time we run.
+    */
+#ifndef _lint
+   srand( (unsigned)time( NULL ) );
+#endif
+
+   wndclass.cbSize        = sizeof (wndclass) ;
+   wndclass.style         = CS_HREDRAW | CS_VREDRAW ;
+   wndclass.lpfnWndProc   = WndProc ;
+   wndclass.cbClsExtra    = 0 ;
+   wndclass.cbWndExtra    = 0 ;
+   wndclass.hInstance     = hInstance ;
+   // wndclass.hIcon         = LoadIcon (NULL, IDI_APPLICATION) ;
+   // wndclass.hIconSm       = LoadIcon (NULL, IDI_APPLICATION) ;
+   wndclass.hIcon         = LoadIcon (hInstance, MAKEINTRESOURCE(GSTUFF));
+   wndclass.hIconSm       = LoadIcon (hInstance, MAKEINTRESOURCE(GSTUFF));
+   wndclass.hCursor       = LoadCursor (NULL, IDC_ARROW) ;
+   // wndclass.hbrBackground = (HBRUSH) GetStockObject (BLACK_BRUSH) ;
+   wndclass.hbrBackground = (HBRUSH) (COLOR_WINDOW + 1) ;
+   wndclass.lpszMenuName  = NULL ;
+   wndclass.lpszClassName = szAppName ;
+
+   RegisterClassEx (&wndclass) ;
+
+   hwnd = CreateWindow (szAppName, "Draw practice graphics",
+                        WS_OVERLAPPEDWINDOW,
+                        // CW_USEDEFAULT, CW_USEDEFAULT,
+                        // CW_USEDEFAULT, CW_USEDEFAULT,
+                        200, 100,
+                        1024, 768,
+                        NULL, NULL, hInstance, NULL) ;
+
+   ShowWindow (hwnd, iCmdShow) ;
+   UpdateWindow (hwnd) ;
+
+   while (TRUE) {
+      if (PeekMessage (&msg, NULL, 0, 0, PM_REMOVE)) {
+         if (msg.message == WM_QUIT)
+              break ;
+   
+         TranslateMessage (&msg) ;
+         DispatchMessage (&msg) ;
+      }
+      else {
+         display_current_operation(hwnd) ;
+      }
+   }
+
+   // while (GetMessage (&msg, NULL, 0, 0)) {
+   //    TranslateMessage (&msg) ;
+   //    DispatchMessage (&msg) ;
+   // }
+   return msg.wParam ;
+}  //lint !e715
 

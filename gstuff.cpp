@@ -1,9 +1,9 @@
 //***********************************************************************
 //  gstuff.c - Windows interface to graphics demo program
+//  NOTE:  this file is *not* utilized in this application!!!
+//         It is superceded by winiface.cpp
 //                                           
 //  Written by:   Daniel D. Miller           
-//                                           
-//  Last Update:  12/04/07 14:55             
 //***********************************************************************
 
 #include <windows.h>

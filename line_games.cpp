@@ -41,7 +41,7 @@ void line_games::update_line_algorithm(void)
 void line_games::init_vector(vector_p vector)
 {
    vector->theta = random_int(CHANGE_ANGLE) ;
-   double degs2rads = 3.1415926535 / 180 ;
+   static double const degs2rads = 3.1415926535 / 180 ;
    vector->tan_theta = tan((double) vector->theta * degs2rads) ;
    vector->prev_dx = 0 ;
    vector->dx = 0.0 ;
@@ -157,7 +157,7 @@ void line_games::update_display(HWND hwnd)
          finish.y = 0 ;
       }
    }
-   if (++delay < 50000)
+   if (++delay < 5000)
       return ;
    delay = 0 ;
    COLORREF attr = get_palette_entry(color) ;
