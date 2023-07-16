@@ -18,7 +18,7 @@ rect::rect(char *title_text)
 void rect::update_display(HWND hwnd)
 {
    HDC hdc ;
-   int i,j,k,sx,sy,x,y,color;
+   int layer,row,col,sx,sy,x,y,color;
 
    if (!we_should_redraw) 
       return ;
@@ -30,12 +30,12 @@ void rect::update_display(HWND hwnd)
    Clear_Window(hdc, 0);
    sx   = maxx/16;
    sy   = maxy/12;
-   for (i = 0; i < 5; i++)
-   for (j = 0; j < 6; j++)
-   for (k = 0; k < 8; k++) {
-      x   = k * maxx/8 + i * sx/5;
-      y   = j * maxy/6 + i * sy/5;
-      color = 16 + k + 8 * (j + 6 * i);
+   for (layer = 0; layer < 5; layer++) //  select layer
+   for (row = 0; row < 6; row++) //  select row
+   for (col = 0; col < 8; col++) {  //  select column
+      x   = col * maxx/8 + layer * sx/5;
+      y   = row * maxy/6 + layer * sy/5;
+      color = 16 + col + 8 * (row + 6 * layer);
       Solid_Rect(hdc, x, y, x+sx-1, y+sy-1, (BYTE) color);
    }
 

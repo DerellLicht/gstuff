@@ -17,7 +17,7 @@
 #include "gobjects.h"   //  graphics-object classes
 #include "gfuncs.h"     //  graphics primitives
 #include "keywin32.h"
-#include "demo.h"       //  demo declarations
+#include "alg_selector.h"       //  demo declarations
 #include "ezfont.h"
 // #include "rgb_data.h"   //  XWindows palette declarations
 
