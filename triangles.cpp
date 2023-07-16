@@ -4,7 +4,7 @@
 #include "palettes.h"   //  24-bit palette functions
 #include "gobjects.h"   //  graphics-object classes
 #include "gfuncs.h"     //  graphics primitives
-#include "demo.h"
+#include "alg_selector.h"
 
 #define  DLG_X0   8
 #define  DLG_Y0   8

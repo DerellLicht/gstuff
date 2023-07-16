@@ -4,7 +4,7 @@
 #include "palettes.h"   //  24-bit palette functions
 #include "gobjects.h"   //  graphics-object classes
 #include "gfuncs.h"     //  graphics primitives
-#include "demo.h"       //  cycle_count
+#include "alg_selector.h"       //  cycle_count
 
 //***********************************************************************
 rcolors::rcolors(char *title_text) 

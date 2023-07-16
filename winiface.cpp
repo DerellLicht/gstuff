@@ -13,7 +13,7 @@
 #include "palettes.h"   //  24-bit palette functions
 #include "gobjects.h"   //  graphics-object classes
 #include "gfuncs.h"
-#include "demo.h"
+#include "alg_selector.h"
 #include "keywin32.h"
 
 static unsigned key_mask = 0 ;

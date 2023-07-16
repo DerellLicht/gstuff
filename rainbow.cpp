@@ -18,7 +18,7 @@
 #include "gfuncs.h"     //  graphics primitives
 #include "palettes.h"   //  24-bit palette functions
 #include "gobjects.h"   //  graphic objects
-#include "demo.h"
+#include "alg_selector.h"
 #include "ezfont.h"
 
 static const double RADS2DEGS = (180.0 / 3.14159) ;

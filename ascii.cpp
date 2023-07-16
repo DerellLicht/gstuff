@@ -4,7 +4,7 @@
 #include "palettes.h"   //  24-bit palette functions
 #include "gobjects.h"   //  graphics-object classes
 #include "gfuncs.h"     //  graphics primitives
-#include "demo.h"       //  we_should_redraw
+#include "alg_selector.h"       //  we_should_redraw
 #include "ezfont.h"
 
 //************************************************************************

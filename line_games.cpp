@@ -5,7 +5,7 @@
 #include "palettes.h"   //  24-bit palette functions
 #include "gobjects.h"   //  graphics-object classes
 #include "gfuncs.h"     //  graphics primitives
-#include "demo.h"       //  pause_the_race
+#include "alg_selector.h"       //  pause_the_race
 
 #define  CHANGE_ANGLE   90
 // #define  CHANGE_ANGLE   45

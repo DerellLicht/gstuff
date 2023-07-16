@@ -10,7 +10,7 @@
 #include <time.h>
 
 #include "gstuff.h"  //  my icon constant
-#include "demo.h"
+#include "alg_selector.h"
 #include "gfuncs.h"
 #include "palettes.h"
 #include "keywin32.h"

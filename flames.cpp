@@ -5,7 +5,7 @@
 #include "gfuncs.h"     //  graphics primitives
 #include "palettes.h"   //  24-bit palette functions
 #include "gobjects.h"   //  graphic objects
-#include "demo.h"
+#include "alg_selector.h"
 
 #define  COLOR_DECREMENT   2
 //***********************************************************************

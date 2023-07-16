@@ -8,7 +8,7 @@
 #include "palettes.h"   //  24-bit palette functions
 #include "gobjects.h"   //  graphics-object classes
 #include "gfuncs.h"
-#include "demo.h"
+#include "alg_selector.h"
 
 extern HINSTANCE g_hinst ;
 
