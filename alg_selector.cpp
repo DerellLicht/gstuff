@@ -1,12 +1,13 @@
-//************************************************************************
+//***************************************************************************************
+//  alg_selector.cpp 
+//  Present onscreen menu of program options, and display the selected option.
+//  Possibly, a better name for this file/header might have been menu.cpp/menu.h
+//***************************************************************************************
+//  Original file info:
 //  File: DEMO.C
-//  This is a main program which is used to illustrate use of
-//  drawing routines in the text of
-//  "Advanced Programmer's Guide to SuperVGA".
-//
-//  12/06/01 07:15 -
-//  It now demonstrates drawing routines in the Windows GDI interface.
-//************************************************************************
+//  This is a main program which is used to illustrate use of drawing routines 
+//  from the book "Advanced Programmer's Guide to SuperVGA".
+//***************************************************************************************
 
 #include <windows.h>
 #include <stdio.h>   //  sprintf, for %*s syntax
@@ -19,7 +20,6 @@
 #include "keywin32.h"
 #include "alg_selector.h"       //  demo declarations
 #include "ezfont.h"
-// #include "rgb_data.h"   //  XWindows palette declarations
 
 int demo_state = 0 ;
 int we_should_redraw = 1 ;
