@@ -46,7 +46,7 @@ static xpalette xpalette0("XWindows palette") ;
 static sglass sglass0("Stained Glass") ;
 static flames flames0("Fire tricks") ;
 static face_trap faces0("Face traps") ;
-rainbow rainbow0("Rainbow !!") ;
+static rainbow rainbow0("Rainbow !!") ;
 ascii ascii0("ASCII Table") ;
 static rcolors rcolors0("rcolors32") ;
 line_games lgames0("Line Games") ;

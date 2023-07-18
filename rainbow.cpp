@@ -152,8 +152,10 @@ void rainbow::update_display(HWND hwnd)
       return ;
 
    //  do I actually want this??
-   if (we_should_redraw)
+   if (we_should_redraw) {
       Clear_Window(hwnd, 0);
+      update_boundaries(cxClient, cyClient) ;
+   }
 
    cycle_count++ ;
    // 30 REM  RANDOM IMPACT PARAMETER

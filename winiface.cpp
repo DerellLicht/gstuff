@@ -22,8 +22,7 @@ HINSTANCE g_hinst = 0;
 //lint -esym(759, get_clocks_per_second)
 //lint -esym(765, get_clocks_per_second)
 
-//  demo.cpp, rainbow.cpp
-extern rainbow rainbow0 ;
+//  alg_selector.cpp
 extern line_games lgames0 ;
 
 //*************************************************************************
@@ -205,8 +204,7 @@ static LRESULT CALLBACK WndProc (HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lPa
       cyClient = HIWORD (lParam) ;
       maxx = cxClient - 1 ;
       maxy = cyClient - 1 ;
-      //  these four are used only by DrawRainbow
-      rainbow0.update_boundaries(cxClient, cyClient) ;
+      // rainbow0.update_boundaries(cxClient, cyClient) ;
 
       we_should_redraw = 1 ;
       return 0 ;
