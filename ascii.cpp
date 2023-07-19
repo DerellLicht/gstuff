@@ -38,7 +38,6 @@ char *ascii::get_font_name(void)
    return ascii_font_name ;
 }
 
-
 //************************************************************************
 void ascii::update_display(HWND hwnd)
 {

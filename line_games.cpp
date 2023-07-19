@@ -133,6 +133,10 @@ void line_games::update_display(HWND hwnd)
    if (pause_the_race)
       return ;
 
+   if (use_solid_pattern) {
+      update_line_algorithm() ;
+   }
+   
    if (we_should_redraw) {
       // SetWindowText(hwnd, title) ;
       state = 0 ;

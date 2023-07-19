@@ -137,6 +137,9 @@ void Clear_Window(HWND hwnd, unsigned Color)
 /************************************************************************/
 //  clear window using specified color (given hdc)
 /************************************************************************/
+//lint -esym(714, Clear_Screen)
+//lint -esym(759, Clear_Screen)
+//lint -esym(765, Clear_Screen)
 void Clear_Screen(HDC hdc, BYTE Color)
 {
    RECT   rect ;

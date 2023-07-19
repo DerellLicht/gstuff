@@ -1,3 +1,7 @@
+//********************************************************************************
+//  this is used *only* by ascii class
+//********************************************************************************
+
 #undef  __STRICT_ANSI__
 
 //  used by ascii class
@@ -164,16 +168,6 @@ static void add_font_to_list(char *facename)
 }
 
 //***********************************************************************
-void display_font_list(void)
-{
-   // font_list_p fptr ;
-   wsprintf(tempstr, "found %u fonts\n", font_count) ;
-   OutputDebugString(tempstr) ;
-   // for (fptr=font_list; fptr != 0; fptr = fptr->next) 
-   //    puts(fptr->name) ;
-}
-
-//***********************************************************************
 // typedef struct tagENUMLOGFONTEX {
 //   LOGFONT  elfLogFont;
 //   TCHAR  elfFullName[LF_FULLFACESIZE];
@@ -322,6 +316,16 @@ static BOOL CALLBACK FontDlgProc (HWND hDlg, UINT message, WPARAM wParam, LPARAM
    }  //lint !e744
    return FALSE ;
 }  //lint !e715
+
+//***********************************************************************
+void display_font_list(void)
+{
+   // font_list_p fptr ;
+   wsprintf(tempstr, "found %u fonts\n", font_count) ;
+   OutputDebugString(tempstr) ;
+   // for (fptr=font_list; fptr != 0; fptr = fptr->next) 
+   //    puts(fptr->name) ;
+}
 
 //****************************************************************************
 int read_a_font(HWND hwnd)

@@ -2,8 +2,6 @@
 //  gstuff.c - Windows interface to graphics demo program
 //                                           
 //  Written by:   Daniel D. Miller           
-//                                           
-//  Last Update:  12/04/07 14:55             
 //***********************************************************************
 
 #include <windows.h>
@@ -11,7 +9,6 @@
 
 #include "gstuff.h"     //  for timer functions
 #include "palettes.h"   //  24-bit palette functions
-#include "gobjects.h"   //  graphics-object classes
 #include "gfuncs.h"
 #include "alg_selector.h"
 #include "keywin32.h"
@@ -23,7 +20,7 @@ HINSTANCE g_hinst = 0;
 //lint -esym(765, get_clocks_per_second)
 
 //  alg_selector.cpp
-extern line_games lgames0 ;
+// extern line_games lgames0 ;
 
 //*************************************************************************
 //  timer usage:
@@ -89,12 +86,13 @@ void process_keystroke(HWND hwnd, unsigned inchr)
          break;
 
       case kF2:
-         if (demo_state == 19) {
+         if (demo_state == 19) { //  ASCII state
             read_a_font(hwnd);
-         } else {
-            wsprintf(tempstr, "F2 is only valid in ASCII state\n") ;
-            OutputDebugString(tempstr) ;
-         }
+         } 
+         // else {
+         //    wsprintf(tempstr, "F2 is only valid in ASCII state\n") ;
+         //    OutputDebugString(tempstr) ;
+         // }
          break;
 
       case kGPlus:
@@ -115,7 +113,6 @@ void process_keystroke(HWND hwnd, unsigned inchr)
 
       case kTAB:
          use_solid_pattern ^= 1 ;
-         lgames0.update_line_algorithm() ;  //  move to LineGames class
          break;
 
       case kQMark:
@@ -210,14 +207,15 @@ static LRESULT CALLBACK WndProc (HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lPa
       return 0 ;
 
    case WM_PAINT:
+//lint -esym(438, hdc) 
       hdc = BeginPaint (hwnd, &ps) ;
 
       if (cxClient == 0 || cyClient == 0)
          return 0 ;
 
-      if (demo_state == 12) {
-         Clear_Screen(hdc, 0) ;
-      }
+      // if (demo_state == 12) { //  line stuff
+      //    Clear_Screen(hdc, 0) ;
+      // }
       display_current_operation(hwnd) ;
       // show_vital_data(hwnd);
 

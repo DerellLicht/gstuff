@@ -49,7 +49,7 @@ static face_trap faces0("Face traps") ;
 static rainbow rainbow0("Rainbow !!") ;
 ascii ascii0("ASCII Table") ;
 static rcolors rcolors0("rcolors32") ;
-line_games lgames0("Line Games") ;
+static line_games lgames0("Line Games") ;
 static lines lines0("Lines") ;
 static gpalettes gpalettes0("more palettes") ;
 static xnpalette xnpalette0("Named XWindows palette") ;
