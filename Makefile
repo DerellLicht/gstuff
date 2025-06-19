@@ -9,9 +9,9 @@ else
 CFLAGS=-Wall -O3 -mwindows
 LFLAGS=-s
 endif
-CFLAGS += -Wno-write-strings
 CFLAGS += -Weffc++
-CFLAGS += -std=c++0x
+CFLAGS += -Wno-write-strings
+CFLAGS += -Wno-stringop-truncation
 
 CSRC=winiface.cpp alg_selector.cpp gfuncs.cpp ezfont.cpp rgb_data.cpp palettes.cpp \
 	font.dialog.cpp gobjects.cpp stained_glass.cpp flames.cpp faces.cpp \

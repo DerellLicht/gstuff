@@ -6,7 +6,6 @@
 #include <windows.h>
 #include <math.h>
 #include <errno.h>
-#include <limits.h>  //  PATH_MAX
 
 #include "gfuncs.h"
 #include "ezfont.h"
@@ -106,7 +105,7 @@ static HFONT EzCreateFont(HDC hdc, char * szFaceName, int iDeciPtHeight,
 
 //*************************************************************************
 static HWND hwndMsg = 0 ;
-static char ezfontname[PATH_MAX] = "" ;
+static char ezfontname[MAX_PATH_LEN] = "" ;
 static int eztextangle = 0 ;  //  in tenths-of-a-degree
 static int ezattribs = 0 ;
 #define  DEFAULT_PSIZE  (200)
