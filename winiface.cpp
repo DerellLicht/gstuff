@@ -208,7 +208,8 @@ static LRESULT CALLBACK WndProc (HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lPa
 
    case WM_PAINT:
 //lint -esym(438, hdc) 
-      hdc = BeginPaint (hwnd, &ps) ;
+      // hdc = 
+      BeginPaint (hwnd, &ps) ;
 
       if (cxClient == 0 || cyClient == 0)
          return 0 ;
@@ -282,7 +283,7 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
     * the numbers will be different every time we run.
     */
 #ifndef _lint
-   srand( (unsigned)time( NULL ) );
+   srand( (unsigned)time( NULL ) ); // NOLINT
 #endif
 
    wndclass.cbSize        = sizeof (wndclass) ;

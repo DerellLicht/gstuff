@@ -12,28 +12,28 @@
 
 //************************************************************************
 static char const * const face_trap_ref[] = {
-"                  ¦                                       ¦                   ",
-"                  ¦                   ¦                   ¦                   ",
-"                  ¦                   ¦                   ¦                   ",
-"                  ¦                   ¦                                       ",
-"                  ¦                   ¦                   ¦                   ",
+"                  |                                       |                   ",
+"                  |                   |                   |                   ",
+"                  |                   |                   |                   ",
+"                  |                   |                                       ",
+"                  |                   |                   |                   ",
 "------------ -----+------------- -----+--------------  ---+-------------------",
-"                  ¦                   ¦                   ¦                   ",
-"                  ¦                   ¦                   ¦                   ",
-"                                      ¦                   ¦                   ",
-"                  ¦                   ¦                   ¦                   ",
-"                  ¦                   ¦                   ¦                   ",
+"                  |                   |                   |                   ",
+"                  |                   |                   |                   ",
+"                                      |                   |                   ",
+"                  |                   |                   |                   ",
+"                  |                   |                   |                   ",
 "------------------+------------------- -------------------+------- -----------",
-"                  ¦                   ¦                   ¦                   ",
-"                  ¦                   ¦                   ¦                   ",
-"                  ¦           ------+ ¦                   ¦                   ",
-"                  ¦                 ¦ ¦                   ¦                   ",
-"                                    ¦ ¦                   ¦                   ",
-" -----------------------------------¦ ¦ ------------------¦ ------------------",
-"                  ¦                 ¦ ¦                   ¦                   ",
-"                  ¦                 ¦ ¦                   ¦                   ",
-"                  ¦           ------+ ¦                   +----+              ",
-"                  ¦                   ¦                                       ",
+"                  |                   |                   |                   ",
+"                  |                   |                   |                   ",
+"                  |           ------+ |                   |                   ",
+"                  |                 | |                   |                   ",
+"                                    | |                   |                   ",
+" -----------------------------------| | ------------------| ------------------",
+"                  |                 | |                   |                   ",
+"                  |                 | |                   |                   ",
+"                  |           ------+ |                   +----+              ",
+"                  |                   |                                       ",
 0 } ;
 
 //************************************************************************
@@ -91,6 +91,7 @@ face_trap::face_trap(char *title_text)
 , char_height(0)
 , dft_columns(0)
 , dft_rows(0)
+, faces{}
 { 
    //lint -esym(1401, face_trap::faces)
 }
@@ -343,10 +344,6 @@ void face_trap::move_a_face(HDC hdc, face_p fp)
 }
 
 //****************************************************************************
-// THVGA.H -- Thrillhaus VGA Packet by Matt Gulden (webmaster@thrillhaus.com)
-// This file originated at http://www.karland.com/code/c/
-// It is public domain and may be modified and/or redistributed.
-//****************************************************************************
 void face_trap::update_display(HWND hwnd)
 {
    static unsigned delay = 0 ;
@@ -368,8 +365,9 @@ void face_trap::update_display(HWND hwnd)
       cycle_count++ ;
       SetBkMode(hdc, OPAQUE) ;
       SetBkColor  (hdc, 0) ;
-      for (unsigned idx=0; idx<FACE_COUNT; idx++) 
+      for (unsigned idx=0; idx<FACE_COUNT; idx++) {   // NOLINT
          move_a_face(hdc, &faces[idx]) ;
+      }
    }
 
    DeleteObject (SelectObject (hdc, GetStockObject (SYSTEM_FONT)));

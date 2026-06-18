@@ -14,6 +14,7 @@ flames::flames(char *title_text)
 //  per http://www.acm.org/crossroads/xrds1-4/ovp.html
 // , _v1(v1), _v2(v2), _v3(v3)
 // , fire_palette(0)  //  cannot init array in init list
+, fire_palette{}
 , fire_palette_init(0)
 , fire_palette_record(NULL)
 , fire_char_width(0)

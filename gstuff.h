@@ -6,8 +6,9 @@ typedef unsigned long long  u64 ;
 extern unsigned cycle_count ;
 
 //  Windows-object IDs
+#define  IDC_STATIC     (-1)
+
 #define  GSTUFF         303
-#define  IDC_STATIC      -1
 #define  IDC_FSELECT    400
 #define  IDC_FCOMBO     401
 

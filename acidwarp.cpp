@@ -14,10 +14,10 @@
 #include <windows.h>
 #include <stdlib.h>
 
-#include "gstuff.h"				  //  u8, etc
-#include "palettes.h"			  //  24-bit palette functions
-#include "gobjects.h"			  //  graphics-object classes
-#include "gfuncs.h"				  //  graphics primitives
+#include "gstuff.h"             //  u8, etc
+#include "palettes.h"           //  24-bit palette functions
+#include "gobjects.h"           //  graphics-object classes
+#include "gfuncs.h"             //  graphics primitives
 #include "alg_selector.h"
 #include "lut.h"
 
@@ -35,14 +35,14 @@ acidwarp::acidwarp (char *title_text)
 //  private member function for class
 //***********************************************************************
 int acidwarp::generate_image (int imageFuncNum, HDC hdc,
-	int xcenter, int ycenter, int xmax, int ymax, int colormax)
+   int xcenter, int ycenter, int xmax, int ymax, int colormax)
 {
    //   UCHAR *buf_graf_unused  originall passed as argument
 
-	long /* int */ x, y, dx, dy, dist, angle;
+   long /* int */ x, y, dx, dy, dist, angle;
    int color;
 
-	/* Some general purpose random angles and offsets. Not all functions use them. */
+   /* Some general purpose random angles and offsets. Not all functions use them. */
    // long a1, a2, a3, a4, 
    long x1, x2, x3, x4, y1, y2, y3, y4;
 
@@ -60,20 +60,20 @@ int acidwarp::generate_image (int imageFuncNum, HDC hdc,
    // a3 = random_int (ANGLE_UNIT);
    // a4 = random_int (ANGLE_UNIT);
 
-	for (y = 0; y < ymax; ++y) {
+   for (y = 0; y < ymax; ++y) {
 
-		for (x = 0; x < xmax; ++x) {
-			dx = x - xcenter;
-			dy = y - ycenter;
+      for (x = 0; x < xmax; ++x) {
+         dx = x - xcenter;
+         dy = y - ycenter;
 
-			dist = lut_dist (dx, dy);
-			angle = lut_angle (dx, dy);
+         dist = lut_dist (dx, dy);
+         angle = lut_angle (dx, dy);
 
-			/* select function. Could be made a separate function, but since this function is
-			   evaluated over a large iteration of values I am afraid that it might slow
-			   things down even more to have a separate function.                         */
+         /* select function. Could be made a separate function, but since this function is
+            evaluated over a large iteration of values I am afraid that it might slow
+            things down even more to have a separate function.                         */
 
-			switch (imageFuncNum) {
+         switch (imageFuncNum) {
             // case -1:    Eight Arm Star -- produces weird discontinuity
             //    color = dist+ lut_sin(angle * (200 - dist)) / 32;
             //    break;
@@ -295,8 +295,8 @@ int acidwarp::generate_image (int imageFuncNum, HDC hdc,
 
             if (color < 64)
                color += random_int (16) - 8;
-            else
-               color = color;
+            // else
+            //    color = color;
             break;
 
          case 34:         /* Variation on Rain */
@@ -376,7 +376,7 @@ int acidwarp::generate_image (int imageFuncNum, HDC hdc,
          default:
             color = random_int (colormax - 1) + 1;
             break;
-			}
+         }
 
          /* Fit color value into the palette range using modulo.  
           * It seems that the Turbo-C MOD function does not behave the way I expect. 
@@ -384,7 +384,7 @@ int acidwarp::generate_image (int imageFuncNum, HDC hdc,
           * I expect MOD to function as it does on my HP-28S.
           * 
           * 01/08/14 DDM - and ALL these assumptions change on a 
-			 */
+          */
 
          color = color % (colormax - 1);
          if (color < 0)
@@ -395,10 +395,10 @@ int acidwarp::generate_image (int imageFuncNum, HDC hdc,
          //  will need to turn into a pixel-write operation...
          // *(buf_graf + (xmax * y) + x) = (UCHAR) color;  /* Store the color in the buffer */
          SetPixel(hdc, x, y, get_palette_entry(color)) ;
-		}
-		/* end for (y = 0; y < ymax; ++y)   */
-	}
-	/* end for (x = 0; x < xmax; ++x)   */
+      }
+      /* end for (y = 0; y < ymax; ++y)   */
+   }
+   /* end for (x = 0; x < xmax; ++x)   */
 
 // #if 0   /* For diagnosis, put palette display line at top of new image */
 //   for (x = 0; x < xmax; ++x) {
@@ -409,23 +409,23 @@ int acidwarp::generate_image (int imageFuncNum, HDC hdc,
 //   }
 // #endif
 
-	return (0);
+   return (0);
 }
 
 
 //************************************************************************
 void acidwarp::update_display (HWND hwnd)
 {
-	HDC hdc;
+   HDC hdc;
    int colormax = 256 ;
    static int ImageFuncNum = 0 ;
 
-	if (!we_should_redraw)
-		return;
+   if (!we_should_redraw)
+      return;
 
-	set_DAC_table (0);
-	hdc = GetDC (hwnd);
-	Clear_Window (hdc, 0);
+   set_DAC_table (0);
+   hdc = GetDC (hwnd);
+   Clear_Window (hdc, 0);
 
    generate_image (ImageFuncNum, hdc, maxx/2, maxy/2, maxx, maxy, colormax) ;
 
@@ -433,9 +433,9 @@ void acidwarp::update_display (HWND hwnd)
       ImageFuncNum = 0 ;
 
    //*****************************************************
-	//  do cleanup and exit
-	//*****************************************************
-	ReleaseDC (hwnd, hdc);
+   //  do cleanup and exit
+   //*****************************************************
+   ReleaseDC (hwnd, hdc);
 }
 
 //************************************************************************
@@ -444,5 +444,5 @@ void acidwarp::update_display (HWND hwnd)
 //************************************************************************
 bool acidwarp::process_key (unsigned key_id)
 {
-	return FALSE;
+   return FALSE;
 }

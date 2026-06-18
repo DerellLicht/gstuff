@@ -1,5 +1,5 @@
 #ifndef __LUT
-#define __LUT 1
+#define __LUT 1   // NOLINT
 
 //lint -esym(1065, lut_sin, lut_angle, lut_dist)
 //lint -esym(1784, lut_sin, lut_angle, lut_dist)

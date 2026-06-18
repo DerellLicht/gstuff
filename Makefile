@@ -1,5 +1,7 @@
-SHELL=cmd.exe
+# SHELL=cmd.exe
 USE_DEBUG = NO
+USE_64BIT = NO
+USE_UNICODE = NO
 USE_FLAMES = NO
 
 ifeq ($(USE_DEBUG),YES)
@@ -12,6 +14,18 @@ endif
 CFLAGS += -Weffc++
 CFLAGS += -Wno-write-strings
 CFLAGS += -Wno-stringop-truncation
+
+#  clang-tidy options
+#CHFLAGS = -header-filter=.*
+CHTAIL = --
+CHTAIL += -DSKIP_FLAME_PALETTES
+CHTAIL += -Wall
+ifeq ($(USE_64BIT),YES)
+CHTAIL += -DUSE_64BIT
+endif
+ifeq ($(USE_UNICODE),YES)
+CHTAIL += -DUNICODE -D_UNICODE
+endif
 
 CSRC=winiface.cpp alg_selector.cpp gfuncs.cpp ezfont.cpp rgb_data.cpp palettes.cpp \
 	font.dialog.cpp gobjects.cpp stained_glass.cpp flames.cpp faces.cpp \
@@ -43,14 +57,17 @@ dist:
 	rm -f gstuff.zip
 	zip gstuff.zip gstuff.* gfuncs.* demo.* ezfont.* rgb_data.* palettes.*
 
-depend:
-	makedepend $(CSRC)
+wc:
+	wc -l $(CSRC) *.rc
+
+check:
+	cmd /C "d:\llvm\bin\clang-tidy.exe $(CHFLAGS) $(CSRC) $(CHTAIL)"
 
 lint:
 	cmd /C "c:\lint9\lint-nt +v -width(160,4) $(LiFLAGS) -ic:\lint9 mingw.lnt -os(_lint.tmp) lintdefs.cpp $(CSRC)"
 
-lint8:
-	cmd /C "c:\lint8\lint-nt +v -width(160,4) $(LiFLAGS) -ic:\lint8 mingw.lnt -os(_lint.tmp) lintdefs.cpp $(CSRC)"
+depend:
+	makedepend $(CSRC)
 
 gstuff.exe: $(OBJS)
 	g++ $(CFLAGS) $(LFLAGS) $(OBJS) -o $@ -lgdi32

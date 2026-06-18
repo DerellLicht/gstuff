@@ -85,12 +85,12 @@ void xpalette::update_display(HWND hwnd)
    //  initialize the fill vars
    yrun = 0.0 ;
    yprev = 0 ;
-   yruni = 0 ;
+   // yruni = 0 ;
 
    for (rowIdx=0; rowIdx<yn; rowIdx++) {
       xrun = 0.0 ;
       xprev = 0 ;
-      xruni = 0 ;
+      // xruni = 0 ;
       xl = xo ;
       xr = xl + xs ;
       for (colIdx=0; colIdx<xn; colIdx++) {

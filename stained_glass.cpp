@@ -24,15 +24,6 @@ sglass::sglass(char *title_text) : graph_object(title_text)
 //  per http://www.acm.org/crossroads/xrds1-4/ovp.html
 // , _v1(v1), _v2(v2), _v3(v3)
 { 
-   // distfact = 2;                /* multiplier for distance */
-   // size = 75;                   /* max size to grow to     */
-   // osize = 50;                  /* same                    */
-   // limit = 1;                   /* min. size of box - one row/col */
-   // in_size = 1;                 /* starting size                */
-   // // int o_size = 49;                 /* same                         */
-   // unoo = 1;                    /* one - changed from + to -    */
-   // onoo = 1;                    /* same, for other drawing      */
-
    //  these are initialized in update_display(), after WM_SIZE is processed
    //lint -esym(1401, sglass::max_col, sglass::max_row, sglass::x, sglass::y, sglass::o_size)
 }
@@ -42,8 +33,7 @@ sglass::sglass(char *title_text) : graph_object(title_text)
 /*******************************************************************/
 void sglass::box_box (HDC hdc, int col_inpt, int row_inpt, int siz)
    {
-   int newsz, d ;
-   newsz = d = 0;
+   int newsz, d = 0;
 
    /* check for limits */
    if (siz > limit &&

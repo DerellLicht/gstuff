@@ -56,14 +56,14 @@ void colorbars::update_display(HWND hwnd)
    //*****************************************************
    //  now, draw some squares!!
    //*****************************************************
-   idx = 0 ;
+   // idx = 0 ;
    yu = yo ;
    yl = yu + ys ;
 
    //  initialize the fill vars
    yrun = 0.0 ;
    yprev = 0 ;
-   yruni = 0 ;
+   // yruni = 0 ;
 
    hdc = GetDC (hwnd) ;
    Clear_Window(hdc, 0);
@@ -112,7 +112,7 @@ void colorbars::update_display(HWND hwnd)
 
       xrun = 0.0 ;
       xprev = 0 ;
-      xruni = 0 ;
+      // xruni = 0 ;
       xl = xo ;
       xr = xl + xs ;
       for (colIdx=0; colIdx<xn; colIdx++) {

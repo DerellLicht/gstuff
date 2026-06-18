@@ -9,8 +9,8 @@ typedef struct rgb_s {
 
 //  palette-table struct
 typedef struct palette_record_s {
-   char const *const name ;
-   rgb_p const palette ;
+   char *name ;
+   rgb_p palette ;
    unsigned entries ;
 } palette_record_t, *palette_record_p ;
 

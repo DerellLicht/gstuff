@@ -9,11 +9,6 @@
 
 class graph_object {
 private:   
-   //  disable copy and assignment operators
-   //  for classes with pointer members
-   graph_object& operator=(const graph_object &src) ;
-   graph_object(const graph_object&);
-
 //  make this field protected, rather than private,
 //  so derived classes can access it.
 protected:
@@ -24,10 +19,15 @@ protected:
    //  I'm leaving it in for now, because it's my only example of 
    //  how derived classes can conditionally call the base-class constructor.
    //  (Also, I don't feel like going back and editing 20 different files...)
-   char *title ;
+   char *title ;  // NOLINT
 
 public:
    graph_object(char *title) ;
+   //  disable copy and assignment operators
+   //  for classes with pointer members
+   graph_object& operator=(const graph_object &src) = delete;
+   graph_object(const graph_object&) = delete;
+
    virtual ~graph_object() {
       if (title != NULL) {
          delete[] title ;
@@ -54,14 +54,14 @@ private:
    void box_box (HDC hdc, int col_inpt, int row_inpt, int siz);
    void box_point (HDC hdc, int ccol, int rrow, int ssiz);
 
-   //  disable copy and assignment operators
-   //  for classes with pointer members
-   sglass& operator=(sglass const &src) ;
-   sglass(const sglass&);
-
 public:
    sglass(char *title_text) ;
-   virtual ~sglass() {} ;
+   //  disable copy and assignment operators
+   //  for classes with pointer members
+   sglass& operator=(sglass const &src) = delete;
+   sglass(const sglass&) = delete;
+
+   virtual ~sglass() = default;
    void update_display(HWND hwnd) ;
    bool process_key(unsigned key_id) ;
 } ;
@@ -88,13 +88,13 @@ private:
    COLORREF get_fire_palette(unsigned index);
    void draw_fire_element(HDC hdc, unsigned x, unsigned y, unsigned color);
 
-   //  disable copy and assignment operators
-   //  for classes with pointer members
-   flames &operator=(const flames &src) ;
-   flames(const flames&);
-
 public:
    flames(char *title_text) ;
+   //  disable copy and assignment operators
+   //  for classes with pointer members
+   flames &operator=(const flames &src) = delete;
+   flames(const flames&) = delete;
+
    // ~flames() {} ;
    void update_display(HWND hwnd) ;
    bool process_key(unsigned key_id) ;
@@ -118,7 +118,7 @@ private:
    unsigned char_height ;
    unsigned dft_columns ;
    unsigned dft_rows ;
-   face_t faces[FACE_COUNT] ;
+   face_t faces[FACE_COUNT] ;  //  convert to <vector>
 
    //  private functions
    void move_a_face(HDC hdc, face_p fp);
@@ -130,13 +130,13 @@ private:
    void dputc(HDC hdc, unsigned x, unsigned y, char outchr, COLORREF attr);
    unsigned max_char_width(HDC hdc);
 
-   //  disable copy and assignment operators
-   //  for classes with pointer members
-   face_trap &operator=(const face_trap &src) ;
-   face_trap(const face_trap&);
-
 public:
    face_trap(char *title_text) ;
+   //  disable copy and assignment operators
+   //  for classes with pointer members
+   face_trap &operator=(const face_trap &src) = delete;
+   face_trap(const face_trap&) = delete;
+
    // ~faces() {} ;
    void update_display(HWND hwnd) ;
    bool process_key(unsigned key_id) ;
@@ -154,13 +154,13 @@ private:
    void rainbow_plot_pixel(HDC hdc, int pcolor, double thold_angle, unsigned primary);
    void update_gtimer(HDC hdc);
 
-   //  disable copy and assignment operators
-   //  for classes with pointer members
-   rainbow &operator=(const rainbow &src) ;
-   rainbow(const rainbow&);
-
 public:
    rainbow(char *title_text) ;
+   //  disable copy and assignment operators
+   //  for classes with pointer members
+   rainbow &operator=(const rainbow &src) = delete;
+   rainbow(const rainbow&) = delete;
+
    // ~faces() {} ;
    void update_display(HWND hwnd) ;
    bool process_key(unsigned key_id) ;
@@ -176,13 +176,13 @@ private:
    unsigned columns ;
    unsigned color ;
 
-   //  disable copy and assignment operators
-   //  for classes with pointer members
-   pixels &operator=(const pixels &src) ;
-   pixels(const pixels&);
-
 public:
    pixels(char *title_text) ;
+   //  disable copy and assignment operators
+   //  for classes with pointer members
+   pixels &operator=(const pixels &src) = delete;
+   pixels(const pixels&) = delete;
+
    void update_display(HWND hwnd) ;
    bool process_key(unsigned key_id) ;
 } ;
@@ -191,13 +191,13 @@ public:
 class ascii: public graph_object {
 private:
 
-   //  disable copy and assignment operators
-   //  for classes with pointer members
-   ascii &operator=(const ascii &src) ;
-   ascii(const ascii&);
-
 public:
    ascii(char *title_text) ;
+   //  disable copy and assignment operators
+   //  for classes with pointer members
+   ascii &operator=(const ascii &src) = delete;
+   ascii(const ascii&) = delete;
+
    void update_display(HWND hwnd) ;
    bool process_key(unsigned key_id) ;
    void set_font_name(char *new_font_name);
@@ -212,13 +212,13 @@ private:
    unsigned rows ;
    unsigned columns ;
 
-   //  disable copy and assignment operators
-   //  for classes with pointer members
-   rcolors &operator=(const rcolors &src) ;
-   rcolors(const rcolors&);
-
 public:
    rcolors(char *title_text) ;
+   //  disable copy and assignment operators
+   //  for classes with pointer members
+   rcolors &operator=(const rcolors &src) = delete;
+   rcolors(const rcolors&) = delete;
+
    void update_display(HWND hwnd) ;
    bool process_key(unsigned key_id) ;
 } ;
@@ -254,12 +254,12 @@ private:
    void move_point(vector_p vector);
    void init_vector(vector_p vector);
 
+public:
    //  disable copy and assignment operators
    //  for classes with pointer members
-   line_games &operator=(const line_games &src) ;
-   line_games(const line_games&);
+   line_games &operator=(const line_games &src) = delete;
+   line_games(const line_games&) = delete;
 
-public:
    line_games(char *title_text) ;
    void update_display(HWND hwnd) ;
    bool process_key(unsigned key_id) ;
@@ -271,13 +271,13 @@ class lines: public graph_object {
 private:
    unsigned orient ;  //  0=horiz, 1=vert
 
-   //  disable copy and assignment operators
-   //  for classes with pointer members
-   lines &operator=(const lines &src) ;
-   lines(const lines&);
-
 public:
    lines(char *title_text) ;
+   //  disable copy and assignment operators
+   //  for classes with pointer members
+   lines &operator=(const lines &src) = delete;
+   lines(const lines&) = delete;
+
    void update_display(HWND hwnd) ;
    bool process_key(unsigned key_id) ;
 } ;
@@ -286,13 +286,13 @@ public:
 class gpalettes: public graph_object {
 private:
 
-   //  disable copy and assignment operators
-   //  for classes with pointer members
-   gpalettes &operator=(const gpalettes &src) ;
-   gpalettes(const gpalettes&);
-
 public:
    gpalettes(char *title_text) ;
+   //  disable copy and assignment operators
+   //  for classes with pointer members
+   gpalettes &operator=(const gpalettes &src) = delete;
+   gpalettes(const gpalettes&) = delete;
+
    void update_display(HWND hwnd) ;
    bool process_key(unsigned key_id) ;
 } ;
@@ -301,13 +301,13 @@ public:
 class xnpalette: public graph_object {
 private:
 
-   //  disable copy and assignment operators
-   //  for classes with pointer members
-   xnpalette &operator=(const xnpalette &src) ;
-   xnpalette(const xnpalette&);
-
 public:
    xnpalette(char *title_text) ;
+   //  disable copy and assignment operators
+   //  for classes with pointer members
+   xnpalette &operator=(const xnpalette &src) = delete;
+   xnpalette(const xnpalette&) = delete;
+
    void update_display(HWND hwnd) ;
    bool process_key(unsigned key_id) ;
 } ;
@@ -316,13 +316,13 @@ public:
 class xpalette: public graph_object {
 private:
 
-   //  disable copy and assignment operators
-   //  for classes with pointer members
-   xpalette &operator=(const xpalette &src) ;
-   xpalette(const xpalette&);
-
 public:
    xpalette(char *title_text) ;
+   //  disable copy and assignment operators
+   //  for classes with pointer members
+   xpalette &operator=(const xpalette &src) = delete;
+   xpalette(const xpalette&) = delete;
+
    void update_display(HWND hwnd) ;
    bool process_key(unsigned key_id) ;
 } ;
@@ -334,13 +334,13 @@ private:
    //  private functions
    void Solid_XRect(HDC hdc, int xl, int yu, int xr, int yl, int Color);
 
-   //  disable copy and assignment operators
-   //  for classes with pointer members
-   xrect &operator=(const xrect &src) ;
-   xrect(const xrect&);
-
 public:
    xrect(char *title_text) ;
+   //  disable copy and assignment operators
+   //  for classes with pointer members
+   xrect &operator=(const xrect &src) = delete;
+   xrect(const xrect&) = delete;
+
    void update_display(HWND hwnd) ;
    bool process_key(unsigned key_id) ;
 } ;
@@ -349,13 +349,13 @@ public:
 class rect: public graph_object {
 private:
 
-   //  disable copy and assignment operators
-   //  for classes with pointer members
-   rect &operator=(const rect &src) ;
-   rect(const rect&);
-
 public:
    rect(char *title_text) ;
+   //  disable copy and assignment operators
+   //  for classes with pointer members
+   rect &operator=(const rect &src) = delete;
+   rect(const rect&) = delete;
+
    void update_display(HWND hwnd) ;
    bool process_key(unsigned key_id) ;
 } ;
@@ -364,13 +364,13 @@ public:
 class polygon: public graph_object {
 private:
 
-   //  disable copy and assignment operators
-   //  for classes with pointer members
-   polygon &operator=(const polygon &src) ;
-   polygon(const polygon&);
-
 public:
    polygon(char *title_text) ;
+   //  disable copy and assignment operators
+   //  for classes with pointer members
+   polygon &operator=(const polygon &src) = delete;
+   polygon(const polygon&) = delete;
+
    void update_display(HWND hwnd) ;
    bool process_key(unsigned key_id) ;
 } ;
@@ -379,13 +379,13 @@ public:
 class squares: public graph_object {
 private:
 
-   //  disable copy and assignment operators
-   //  for classes with pointer members
-   squares &operator=(const squares &src) ;
-   squares(const squares&);
-
 public:
    squares(char *title_text) ;
+   //  disable copy and assignment operators
+   //  for classes with pointer members
+   squares &operator=(const squares &src) = delete;
+   squares(const squares&) = delete;
+
    void update_display(HWND hwnd) ;
    bool process_key(unsigned key_id) ;
 } ;
@@ -394,13 +394,13 @@ public:
 class circles: public graph_object {
 private:
 
-   //  disable copy and assignment operators
-   //  for classes with pointer members
-   circles &operator=(const circles &src) ;
-   circles(const circles&);
-
 public:
    circles(char *title_text) ;
+   //  disable copy and assignment operators
+   //  for classes with pointer members
+   circles &operator=(const circles &src) = delete;
+   circles(const circles&) = delete;
+
    void update_display(HWND hwnd) ;
    bool process_key(unsigned key_id) ;
 } ;
@@ -409,13 +409,13 @@ public:
 class colorbars: public graph_object {
 private:
 
-   //  disable copy and assignment operators
-   //  for classes with pointer members
-   colorbars &operator=(const colorbars &src) ;
-   colorbars(const colorbars&);
-
 public:
    colorbars(char *title_text) ;
+   //  disable copy and assignment operators
+   //  for classes with pointer members
+   colorbars &operator=(const colorbars &src) = delete;
+   colorbars(const colorbars&) = delete;
+
    void update_display(HWND hwnd) ;
    bool process_key(unsigned key_id) ;
 } ;
@@ -427,13 +427,13 @@ private:
    //  private functions
    void Concentric_Rect(HDC hdc, int l, int t, int width, int height);
 
-   //  disable copy and assignment operators
-   //  for classes with pointer members
-   bitblt &operator=(const bitblt &src) ;
-   bitblt(const bitblt&);
-
 public:
    bitblt(char *title_text) ;
+   //  disable copy and assignment operators
+   //  for classes with pointer members
+   bitblt &operator=(const bitblt &src) = delete;
+   bitblt(const bitblt&) = delete;
+
    void update_display(HWND hwnd) ;
    bool process_key(unsigned key_id) ;
 } ;
@@ -442,13 +442,13 @@ public:
 class triangles: public graph_object {
 private:
 
-   //  disable copy and assignment operators
-   //  for classes with pointer members
-   triangles &operator=(const triangles &src) ;
-   triangles(const triangles&);
-
 public:
    triangles(char *title_text) ;
+   //  disable copy and assignment operators
+   //  for classes with pointer members
+   triangles &operator=(const triangles &src) = delete;
+   triangles(const triangles&) = delete;
+
    void update_display(HWND hwnd) ;
    bool process_key(unsigned key_id) ;
 } ;
@@ -457,13 +457,13 @@ public:
 class wincolors: public graph_object {
 private:
 
-   //  disable copy and assignment operators
-   //  for classes with pointer members
-   wincolors &operator=(const wincolors &src) ;
-   wincolors(const wincolors&);
-
 public:
    wincolors(char *title_text) ;
+   //  disable copy and assignment operators
+   //  for classes with pointer members
+   wincolors &operator=(const wincolors &src) = delete;
+   wincolors(const wincolors&) = delete;
+
    void update_display(HWND hwnd) ;
    bool process_key(unsigned key_id) ;
 } ;
@@ -479,13 +479,13 @@ private:
    int generate_image (int imageFuncNum, HDC hdc,
                        int xcenter, int ycenter, int xmax, int ymax, int colormax);
 
-   //  disable copy and assignment operators
-   //  for classes with pointer members
-   acidwarp &operator=(const acidwarp &src) ;
-   acidwarp(const acidwarp&);
-
 public:
    acidwarp(char *title_text) ;
+   //  disable copy and assignment operators
+   //  for classes with pointer members
+   acidwarp &operator=(const acidwarp &src) = delete;
+   acidwarp(const acidwarp&) = delete;
+
    void update_display(HWND hwnd) ;
    bool process_key(unsigned key_id) ;
 } ;
